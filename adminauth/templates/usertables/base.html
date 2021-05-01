@@ -1,0 +1,72 @@
+{%extends 'shop/base.html'%}
+{%load static%}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{%block content%}
+<br/>
+<span style="word-spacing:10px;padding:10px;">
+    <a href="{% url 'adminauth:manufacturers'%}">Manufacturers</a>
+    <a href="{% url 'adminauth:designers' %}">Designers</a>
+</span>
+
+
+<p>
+
+All Users :
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>E-mail</th>
+            <th>Current User</th>
+        </tr>
+
+        {% for i in users %}
+            <tr>
+                <td><a href="{% url 'adminauth:locate' %}">{{i}}</a></td>
+                <td>{{i.email}}</td>
+                <td>
+                    {% if i.username == request.user.username %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+</p>
+
+
+
+
+
+
+
+
+
+<ul>
+
+    <li><a href="#">create promo code</a></li>
+    <li><a href="#">Create designer</a></li>
+    <li><a href="#">Create Manufacturer</a></li>
+
+
+    <li>Reports</li>
+    <li>Defaulters</li>
+    <li>Buying pattern</li>
+
+</ul>
+
+
+
+{%endblock%}
+</body>
+</html>

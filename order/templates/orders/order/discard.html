@@ -1,0 +1,13 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+	Unsuccessful
+{% endblock %}
+
+{% block content %}
+  <h1>No courier service availabel in your area</h1>
+  <p>In your area we don't have courier service availabel.</p>
+  <a href="{% url "orders:order_create" %}" class="button">
+      Try with another pin code
+    </a>
+{% endblock %}
