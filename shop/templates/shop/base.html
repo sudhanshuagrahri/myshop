@@ -16,16 +16,20 @@
     <div id="header">
       <a href="/" class="logo">AROWANA FASHIONS</a>
 	  <span class="user">
-
+		<a href="{%url 'shop:product_list' %}Home</a>
+		
     {% if request.user.is_authenticated %}
       Hello {{ request.user.username}} ,
         <a href="{%url 'adminauth:base'%}">Admin-Panel</a>
+		
+		
         <a href="{% url 'shop:logout' %}">Logout</a>
     {% else %}
         Hello new user ,
       <a href="{% url 'shop:login' %}">Log-in</a>
 	  <a href="{% url 'shop:register' %}">Create Account</a>
     {% endif %}
+	<a href="https://www.bunaai.com/pages/exchange-policy">Terms and Condtions</a>
 	<a href="{% url 'cart:cart_detail' %}"> cart</a>
   </span>
 
