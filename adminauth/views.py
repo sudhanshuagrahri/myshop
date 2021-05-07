@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import render,redirect
 from .models import Designers,Master
 from django.views.decorators.csrf import csrf_exempt
-from .forms import DesignerForm,UserForm,MasterForm
+from .forms import DesignerForm,UserForm,MasterForm,
 
 
 
