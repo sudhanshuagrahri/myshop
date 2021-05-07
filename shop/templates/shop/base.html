@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <title>{% block title %}My shop{% endblock %}</title>
-    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
 	<script>
 		function product(a,b)
 		{
@@ -13,32 +13,34 @@
 	</script>
   </head>
   <body>
+
     <div id="header">
       <a href="/" class="logo">AROWANA FASHIONS</a>
-	  <span class="user">
-		<a href="{%url 'shop:product_list' %}Home</a>
-		
-    {% if request.user.is_authenticated %}
-      Hello {{ request.user.username}} ,
-        <a href="{%url 'adminauth:base'%}">Admin-Panel</a>
-		
-		
-        <a href="{% url 'shop:logout' %}">Logout</a>
-    {% else %}
-        Hello new user ,
-      <a href="{% url 'shop:login' %}">Log-in</a>
-	  <a href="{% url 'shop:register' %}">Create Account</a>
-    {% endif %}
-	<a href="https://www.bunaai.com/pages/exchange-policy">Terms and Condtions</a>
-	<a href="{% url 'cart:cart_detail' %}"> cart</a>
+	  <span class="user" style="word-spacing:20px;">
+      {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser %}
+                  Hello {{ request.user.username}} ,
+                      <a href="{%url 'adminauth:masterpanel'%}">Master Panel</a>
+                      <a href="{% url 'shop:logout' %}">Logout</a>
+            {%else%}
+                  Hello {{ request.user.first_name}}
+                      <a href="{% url 'shop:logout' %}">Logout</a>
+            {%endif%}
+      {% else %}
+          Hello user ,
+            <a href="{% url 'shop:login' %}">Log-in</a>
+	        <a href="{% url 'shop:register' %}">Create Account</a>
+      {% endif %}
+	<a href="{% url 'cart:cart_detail' %}">Cart</a>
   </span>
+
+
+
 
 
   </div>
 
-
-
-
+<div>
   {% if messages %}
     <ul class="messages">
       {% for message in messages %}
@@ -49,10 +51,9 @@
       {% endfor %}
     </ul>
   {% endif %}
-
-
-
     </div>
+
+
     <div id="subheader">
       <div class="cart">
        Welcome

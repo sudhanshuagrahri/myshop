@@ -1,0 +1,27 @@
+{%extends 'shop/base.html'%}
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+{%block content%}
+
+<h2>Assign role : </h2><br/>
+{% csrf_token %}
+<form method="post">
+    <table>
+        <tr>
+            {{user_form}}
+        </tr>
+
+    </table>
+      <input type="submit" value="Click">
+</form>
+{%endblock%}
+</body>
+</html>

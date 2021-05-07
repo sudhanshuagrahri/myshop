@@ -6,10 +6,6 @@
 {% endblock %}
 
 {% block content %}
-
-<div>
-	<img src="{% static "img/banner.jpg" %}" id="banner">
-</div>
   <div id="sidebar">
     <h3>Categories</h3>
     <ul>
@@ -23,6 +19,9 @@
       {% endfor %}
     </ul>
   </div>
+
+
+
   <div id="main" class="product-list">
     <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
     {% for product in products %}

@@ -1,18 +1,20 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Master,Manufacturers,Designers
+from .models import Master,Designers
 
-
+class MasterForm(forms.ModelForm):
+    class Meta:
+        model = Master
+        fields = ('name','email','role','mobile','address','info','s_status')
 
 class DesignerForm(forms.ModelForm):
     class Meta:
         model = Designers
-        fields = ['name','product_code','nop' ,'uplpics','desc' ,'price']
+        fields = ('id','name','number_of_pics' ,'uplpics','desc','imgs')
 
-class ManufacturerForm(forms.ModelForm):
-    class Meta:
-        model = Manufacturers
-        fields = ['name','Qty','Courier_number','comments']
+
+
+
 
 
 class UserForm(forms.ModelForm):
