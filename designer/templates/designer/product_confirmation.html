@@ -1,0 +1,6 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+    {% csrf_token %}
+    <h4>{{context}}</h4>
+{% endblock %}

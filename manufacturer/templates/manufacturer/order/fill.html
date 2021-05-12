@@ -1,0 +1,40 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+  Details of dispatching
+{% endblock %}
+
+{% block content %}
+  <h1>Details of dispatching</h1>
+
+  <div class="list">
+    <h3></h3>
+	{% if dispatched.filled %}
+	<p> Dispatch Details</p>
+		<br>
+		Sent On:{{ dispatched.sent_on }}
+          <br>
+		  Delivered on: {{ dispatched.delivered_on }} 
+		  <br>
+		  Exchange applicabel {{ dispatched.exchange }}  
+		  <br>
+		  Courier No: {{ dispatched.courier_no }}
+		  <br>
+		  <br>
+		  
+		  <br>
+            
+      {% else %}
+          <p>Please, fill the following form:</p>
+			<form method="post">
+			{{ dispatch_form.as_p }}
+			{% csrf_token %}
+			<p><input type="submit" value="Submit"></p>
+			</form>
+    
+      {% endif %}
+    
+  </div>
+
+
+{% endblock %}

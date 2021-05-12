@@ -1,0 +1,30 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+  Appoint
+{% endblock %}
+
+{% block content %}
+  <h1>Appoint</h1>
+
+  <div class="appoint">
+	{% if message %}
+		<p>{{message}}</p>
+	{% endif %}
+    <h3></h3>
+	
+          <p>Please, fill the following form:</p>
+			<form method="post">
+			{{ user_form.as_p }}
+			{{ profile_form.as_p }}
+			{% csrf_token %}
+			<p><input type="submit" value="Appoint"></p>
+			<p><input type="reset" value="Reset"></p>
+			</form>
+    
+   
+    
+  </div>
+
+
+{% endblock %}

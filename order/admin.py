@@ -17,7 +17,7 @@ class OrderAdmin(admin.ModelAdmin):
 
 @admin.register(OrderCustItem)
 class OrderCustAdmin(admin.ModelAdmin):
-    list_display = ['id','order','cart']
+    list_display = ['id','order','product']
 
 @admin.register(Pincode)
 class PincodeAdmin(admin.ModelAdmin):

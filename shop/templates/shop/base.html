@@ -15,23 +15,59 @@
   <body>
 
     <div id="header">
-      <a href="/" class="logo">AROWANA FASHIONS</a>
-	  <span class="user" style="word-spacing:20px;">
+      
       {% if request.user.is_authenticated %}
             {% if request.user.is_superuser %}
-                  Hello {{ request.user.username}} ,
-                      <a href="{%url 'adminauth:masterpanel'%}">Master Panel</a>
-                      <a href="{% url 'shop:logout' %}">Logout</a>
-            {%else%}
-                  Hello {{ request.user.first_name}}
-                      <a href="{% url 'shop:logout' %}">Logout</a>
-            {%endif%}
+              <a href="" class="logo">AROWANA FASHIONS</a>
+              <span class="user" style="word-spacing:20px;">
+              Hello {{ request.user.username|capfirst }} ,
+              <a href="{%url 'adminauth:masterpanel'%}">Master Panel</a>
+              <a href="{% url 'shop:logout' %}">Logout</a>
+
+            {% elif request.user.groups.all.0|lower == "master" %}
+              <a href="{%url 'master:registerPerson'%}" class="logo">AROWANA FASHIONS</a>
+              <span class="user" style="word-spacing:20px;">
+              <span>Hello, {{ request.user.first_name|capfirst}} </span>
+              <a href="{%url 'master:registerPerson'%}">Add Franchise</a>
+              <a href="{%url 'master:addPC'%}">Promo</a>
+              <a href="{%url 'master:addRC'%}">Referral</a>
+              <a href="{% url 'shop:logout' %}">Logout</a>
+
+            {% elif request.user.groups.all.0|lower == "manufacturer" %}
+              <a href="{%url 'manufacturer:create_products'%}" class="logo">AROWANA FASHIONS</a>
+              <span class="user" style="word-spacing:20px;">
+              <span>Hello, {{ request.user.first_name|capfirst}} </span>
+              <a href="{%url 'manufacturer:create_products'%}">Add Product</a>
+              <a href="{%url 'manufacturer:show_order'%}">Orders</a>
+              <a href="{% url 'shop:logout' %}">Logout</a>
+
+            {% elif request.user.groups.all.0|lower == "customer" %}
+              <a href="/" class="logo">AROWANA FASHIONS</a>
+              <span class="user" style="word-spacing:20px;">
+              <span>Hello, {{ request.user.first_name|capfirst}} </span>
+              <a href="{% url 'cart:cart_detail' %}">Cart</a>
+              <a href="{% url 'shop:logout' %}">Logout</a>
+              
+            {% elif request.user.groups.all.0|lower == "designer" %}
+              <a href="{%url 'designer:manufacturer_list'%}" class="logo">AROWANA FASHIONS</a>
+              <span class="user" style="word-spacing:20px;">
+              <span>Hello, {{ request.user.first_name|capfirst}} </span>
+              <a href="{%url 'designer:manufacturer_list'%}">Manufacturer</a>
+              <a href="{% url 'shop:logout' %}">Logout</a>
+
+            {% else %}
+              <a href="/" class="logo">AROWANA FASHIONS</a>
+              <span class="user" style="word-spacing:20px;">
+                <a href="{% url 'shop:logout' %}">Logout</a>
+
+            {% endif %}
       {% else %}
-          Hello user ,
+      <a href="/" class="logo">AROWANA FASHIONS</a>
+      <span class="user" style="word-spacing:20px;">
             <a href="{% url 'shop:login' %}">Log-in</a>
-	        <a href="{% url 'shop:register' %}">Create Account</a>
+	          <a href="{% url 'shop:register' %}">Create Account</a>
+            <a href="{% url 'cart:cart_detail' %}">Cart</a>
       {% endif %}
-	<a href="{% url 'cart:cart_detail' %}">Cart</a>
   </span>
 
 

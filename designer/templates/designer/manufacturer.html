@@ -1,0 +1,16 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}
+    Manufacturer List
+{% endblock title %} 
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {% for manu in qs %}
+            {% csrf_token %}
+            <p> {{manu.first_name}} {{manu.last_name}} </p>
+            <a href="{% url 'designer:manufacturer_detail' manu.id %}">Detail</a>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}

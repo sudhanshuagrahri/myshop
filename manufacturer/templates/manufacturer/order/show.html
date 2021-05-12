@@ -1,0 +1,40 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+  Orders
+{% endblock %}
+
+{% block content %}
+  <h1>Order of Customer</h1>
+
+  <div class="list">
+    <h3></h3>
+    <ul>
+      {% for item in products %}
+        <li>
+          {{ item.quantity }}x {{ item.product.name }}
+          <br>
+		  Customer Name: {{ item.order.first_name }} {{ item.order.last_name }} 
+		  <br>
+		  Landmark: {{ item.order.address }} {{ item.order.city }} 
+		  <br>
+		  Pincode: {{ item.order.postal_code }}
+		  <br>
+		  Mobile No:{{ item.order.mobile }}
+		  <br>
+		  Email Id: {{ item.order.email }}
+		  <br>
+		  {{ item.order.id }}
+		  <br>
+		  <br>
+		  <a href="{% url "manufacturer:dispatch_order" item.order.id %}">Dispatch</a>
+		  <br>
+		  <br>
+        </li>
+      {% endfor %}
+    </ul>
+    
+  </div>
+
+
+{% endblock %}

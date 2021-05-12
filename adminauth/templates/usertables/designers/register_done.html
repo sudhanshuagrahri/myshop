@@ -1,8 +1,0 @@
-{% extends "shop/base.html" %}
-
-{% block title %}Welcome{% endblock %}
-
-{% block content %}
-  <h1>Welcome {{ new_user.first_name }}!</h1>
-  <p>Designer created !! <a href="{% url 'adminauth:designers' %}">Designers page.</a>.</p>
-{% endblock %}

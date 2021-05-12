@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
+from django.contrib.auth.models import User, Group
 
 class Category(models.Model):
     name = models.CharField(max_length=200,
@@ -24,6 +25,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category,
                                  related_name='products',
                                  on_delete=models.CASCADE)
+    manufacturer = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
     image = models.ImageField(upload_to='products/%Y/%m/%d',
@@ -58,6 +60,8 @@ class Profile(models.Model):
                               choices=GENDER_CHOICES,
                               default='male')
     phone_no = models.CharField(max_length=12)
+    address = models.TextField(blank=True,null=True)
+    info = models.TextField(blank=True,null=True)
     
     def __str__(self):
         return f'Profile for user [self.user.username]'

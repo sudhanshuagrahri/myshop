@@ -1,0 +1,24 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {% csrf_token %}
+        {% if qs|length != 0 %}
+            {% for p in qs %}
+            <div style="margin: 30px 0;">
+                <p>Product Name: {{p.product_name}}</p>
+                <p>Product Image: <img src="{{p.image.url}}" height="200px" width="150px"></p>
+                <p>Description: {{p.description}}</p>
+                <p>Price: {{p.selling_price}}</p>
+                <p>Quantity: {{p.quantity}}</p>
+                <p>Availability: {{p.available}}</p>
+                <a href="{% url 'designer:manufactur_product_approved' p.id %}">Approve</a>
+                <a href="{% url 'designer:manufactur_product_decline' p.id %}">Decline</a>
+
+            </div>
+            {% endfor %}
+        {% else %}
+            {{qs}}
+        {% endif %}
+    {%endif%}
+{% endblock %}

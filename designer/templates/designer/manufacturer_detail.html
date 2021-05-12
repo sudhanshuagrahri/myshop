@@ -1,0 +1,16 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {% csrf_token %}
+        <p>Name: {{ qs.first_name }} {{ qs.last_name }}</p>
+        <p>Gender: {{ profile.gender }}</p>
+        <p>Username: {{ qs.username }}</p>
+        <p>Email: {{qs.email}}</p>
+        <p>Phone Number: {{profile.phone_no}}</p>
+        <a href="{% url 'designer:manufactur_products_list' qs.id %}">Show Products</a>
+    {% endif %}
+
+{% endblock %}

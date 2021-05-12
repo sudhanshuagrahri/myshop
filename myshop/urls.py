@@ -22,8 +22,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cart/',include('cart.urls',namespace='cart')),
     path('orders/', include('order.urls', namespace='orders')),
-    path('adminauth/',include('adminauth.urls',namespace='adminauth')),
     path('', include('shop.urls', namespace='shop')),
+    path('designer/', include('designer.urls')),
+    path('manufacturer/', include('manufacturer.urls', namespace='manufacturer')),
+    path('master/',include('master.urls',namespace='master')),
 ]
 
 if settings.DEBUG:
