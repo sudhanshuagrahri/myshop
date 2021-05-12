@@ -21,7 +21,6 @@
               <a href="" class="logo">AROWANA FASHIONS</a>
               <span class="user" style="word-spacing:20px;">
               Hello {{ request.user.username|capfirst }} ,
-              <a href="{%url 'adminauth:masterpanel'%}">Master Panel</a>
               <a href="{% url 'shop:logout' %}">Logout</a>
 
             {% elif request.user.groups.all.0|lower == "master" %}
